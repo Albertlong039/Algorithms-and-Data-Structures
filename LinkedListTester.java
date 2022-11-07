@@ -6,29 +6,35 @@ public class LinkedListTester
 	public static void main( String args[] ) throws Exception
 	{
 		if ( args.length < 2 )
-			die( "FATAL ERROR: must enter two filenames on command line.\n   java LinkedListTester set1.txt  set2.txt\n" );
-		LinkedList<String> myList = new LinkedList<String>();
-		// READ IN THE FILE NAMED BY args[0]
-		BufferedReader infile0 = new BufferedReader( new FileReader( args[0] ) );
-		while ( infile0.ready() )
-				myList.insertAtTail( infile0.readLine() );
-		infile0.close();
+			die( "FATAL ERROR: must enter two filenames on command line.\n");
+		
+		//  READ IN BOTH SETS INTO LINKED LISTS 1 & 2
+		
+		LinkedList<String> list_1 = new LinkedList<String>();
+		Scanner infile_1 = new Scanner( new File( args[0] ) );
+		while ( infile_1.hasNext() )
+				list_1.insertAtTail( infile_1.next() );
+		infile_1.close();
+		LinkedList<String> list_2 = new LinkedList<String>();
+		Scanner infile_2 = new Scanner( new File( args[1] ) );
+		while ( infile_2.hasNext() )
+				list_2.insertAtTail( infile_2.next() );
+		infile_2.close();
 
-		System.out.println( "myList loaded from " + args[0] );
-		System.out.println("myList: (contains " + myList.size() + " elements) " +  myList ); // invokes toString
-
-		// NOW READ IN THE FILE NAMED BY args[1]
-		BufferedReader infile1 = new BufferedReader( new FileReader( args[1] ) );
-		System.out.println( "Searching myList for the following words from " + args[1] );
-		while (infile1.ready() )
-		{
-			String word = infile1.readLine();
-			if ( myList.contains( word ) )
-				System.out.println( word + "\tfound" );
-			else
-				System.out.println( word + "\tNOT found" );
-		}
-		infile1.close();
+	//  ECHO OUT BOTH LISTS - EACH LIST ON ITS OWN LINE 
+	
+	System.out.println( "list_1: " + list_1 ); // INVOKE THE LINKEDLIST CLASS's .toString
+	System.out.println( "list_2: " + list_2 ); // INVOKE THE LINKEDLIST CLASS's .toString
+	
+	// CREATE AND PRINT A THIRD LIST: THE SORTED MERGE OF FIRST TWO LISTS
+	LinkedList<String> theMerge = list_1.merge( list_2 );
+	System.out.println( "merged: " + theMerge ); // PRINT THE SORTED MERGER OF THE TWO LISTS
+	
+	//  ECHO OUT BOTH LISTS AGAIN JUST TO PROVE YOU DID NOT CORRUPT THEM IN THE MERGE CODE
+	
+	System.out.println( "list_1: " + list_1 ); // INVOKE THE LINKEDLIST CLASS's .toString
+	System.out.println( "list_2: " + list_2 ); // INVOKE THE LINKEDLIST CLASS's .toString	
+	
 	} // END MAIN
 
 	static void die( String errMsg )

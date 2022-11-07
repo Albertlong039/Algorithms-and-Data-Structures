@@ -1,0 +1,65 @@
+UNTIL YOU ARE SURE ITS WROKING RIGHT USE THE TINY FILES
+
+USE THE TINY JUMBLES FILE :
+atc
+otsp
+gdo
+atr
+arpt
+grof
+sygols
+
+READ IT INTO a TREESET
+
+
+USE TINY DICTIONARY FILE 
+act
+cat
+tac
+dog
+god
+post
+pots
+stop
+spot
+tops
+opts
+rat
+tar
+art
+trap
+tarp
+part
+flog
+golf
+frog
+gorp
+glossy
+
+READ IT INTO A TreeMap<String,TreeSet<String>> like this
+
+using a BufferedReader since the dictionary words are one word per line:
+
+for each word/line read in from the dictionary file do this 
+	call dict word dWord make canonical copy named dCanon
+	if dCanon not yet in the keys of the map then
+		put( dCanon, new empty TreeSet )
+	add the dWord to the TreeSet associated with the dCanon key
+	(just like we did with PACS)
+end loop
+
+YOU HAVE JUST BUILT THe LOOKUP TABLE NOW PROCESS THe JUMBLES TREESET
+
+for each word in the jumbles TreeSet
+	print the jWord
+	make a canoncal copy of jWord call it jCanon
+	if jCanon is contained in the keys of the map
+	then loop thru the TreeSet associated with that jCanon key
+	printing a space followed by the next word - use enhanced for loop
+	(just like we did with PACS)
+
+	print a newline 
+end loop 
+
+YOU ARE DONE!
+
