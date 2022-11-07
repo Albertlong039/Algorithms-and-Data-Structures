@@ -5,35 +5,49 @@ public class LinkedListTester
 {
 	public static void main( String args[] ) throws Exception
 	{
-		if ( args.length < 2 )
-			die( "FATAL ERROR: must enter two filenames on command line.\n   java LinkedListTester set1.txt  set2.txt\n" );
-		LinkedList<String> myList = new LinkedList<String>();
-		// READ IN THE FILE NAMED BY args[0]
-		BufferedReader infile0 = new BufferedReader( new FileReader( args[0] ) );
-		while ( infile0.ready() )
-				myList.insertAtTail( infile0.readLine() );
-		infile0.close();
+		LinkedList<String> list1 = new LinkedList<String>( args[0], false );  // false = INSERTATTAIL CALLED ON EACH T READ FROM FILE
+		System.out.format("list1 %s size %d unordered %s\n",args[0],list1.size(),list1 ); // invokes toString
+		
+		 list1.remove( "charlie" ); list1.remove("echo"); list1.remove("zebra"); // HEAD, TAIL, NOWHERE
+		System.out.format("list1 (after remove charlie, echo & zebra) %s\n",list1 ); // invokes toString
+		
+		LinkedList<String> list2 = new LinkedList<String>( args[0], true );  // true = INSERTINORDER CALLED ON EACH T READ FROM FILE
+		System.out.format("list2 %s size %d ordered %s\n",args[0],list2.size(),list2 ); // invokes toString
 
-		System.out.println( "myList loaded from " + args[0] );
-		System.out.println("myList: (contains " + myList.size() + " elements) " +  myList ); // invokes toString
+		LinkedList<String> list3 = new LinkedList<String>( args[1], true );  // true = INSERTINORDER CALLED ON EACH T READ FROM FILE
+		System.out.format("list3 %s size %d ordered %s\n",args[1],list3.size(),list3 ); // invokes toString	
+		
+		// MUST RETURN ALL SET OP LISTS IN SORTED ORDER NO DUPES 
+		LinkedList<String> unionList = list2.union(list3);
+		System.out.println("list2.union(list3) " + unionList); 	
+		
+		LinkedList<String> interList = list2.inter(list3);	
+		System.out.println("list2.inter(list3) " + interList); 
+		
+		LinkedList<String> diffList = list2.diff(list3);		
+		System.out.println("list2.diff(list3)  " + diffList); 
+		
+		LinkedList<String> xorList = list2.xor(list3);				
+		System.out.println("list2.xor(list3)   " + xorList); 
+		
+		// ECHO LISTS 2 & 3  TO PROVE THEY WERE NOT MODIFIED
+		
+		System.out.println();
+		System.out.println( "list2 after set ops: " + list2 );
+		System.out.println( "list3 after set ops: " + list3 );
+		
+		// DESTROY LIST2 BY REPEATEDLY CALLING REMOVE AT TAIL UNTIL EMPTY
+		while ( ! list2.empty() ) list2.removeAtTail();
 
-		// NOW READ IN THE FILE NAMED BY args[1]
-		BufferedReader infile1 = new BufferedReader( new FileReader( args[1] ) );
-		System.out.println( "Searching myList for the following words from " + args[1] );
-		while (infile1.ready() )
-		{
-			String word = infile1.readLine();
-			if ( myList.contains( word ) )
-				System.out.println( word + "\tfound" );
-			else
-				System.out.println( word + "\tNOT found" );
-		}
-		infile1.close();
+		// DESTROY LIST3 BY REPEATEDLY CALLING REMOVE AT FRONT
+		while ( ! list3.empty() ) list3.removeAtFront();
+		
+	// ECHO LISTS 2 & 3  TO PROVE THEY WERE DESTROYED
+		
+		System.out.println();
+		System.out.println( "list2 after all nodes removedAtTail: " + list2 );
+		System.out.println( "list3 after all nodes removedAtFront: " + list3 );
+		
+		
 	} // END MAIN
-
-	static void die( String errMsg )
-	{
-		System.out.println( errMsg );
-		System.exit(0); // kills program
-	}
 } // EOF

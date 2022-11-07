@@ -1,4 +1,5 @@
-public class Node<T>
+public class Node<T extends Comparable<T>> // tells compiler our incoming T type implements Comparable
+
 {
   private T data;
   private Node<T> next;
@@ -41,6 +42,6 @@ public class Node<T>
   public String toString()
   {
 	  return ""+getData();
-  }
-
+  } 
+	 
 } //EOF

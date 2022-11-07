@@ -1,5 +1,5 @@
 /*
-	Deck class
+	Deck class (for TopCardPlacer class of project #1
 */
 
 import java.util.*;
@@ -8,21 +8,17 @@ import java.io.*;
 public class Deck
 {
 	private int[] deck;
-	private final int MAX_DECK_SIZE = 20;
+	private final int MAX_DECK_SIZE = 30;
 	public Deck( int numCards )
-	{	if ( numCards%2 != 0 || numCards > MAX_DECK_SIZE )
+	{	if ( numCards%2 != 0 || numCards > MAX_DECK_SIZE ) 
 		{
 			System.out.format("\nINVALID DECK SIZE: (" + numCards + "). Must be an small even number <= %d\n", MAX_DECK_SIZE);
 			System.exit(0);
 		}
 		deck = new int[numCards];
-		// YOU DO THIS => init deck to be exactly numCards long
-		for(int i=0; i<numCards;i++){
-			deck[i]=i;
-		}
-		// YOU DO THIS => fill deck with with 0 1 2 3 ... numCards-1 in order
+		for ( int i=0 ; i<numCards ; i++ ) deck[i] = i;
 	}
-
+	
 	public String toString()
 	{
 		String deckStr = "";
@@ -35,7 +31,6 @@ public class Deck
 	// MODIFIES THE MEMBER ARRAY DECK
 	public void inShuffle()
 	{
-		// YOUR CODE HERE DELETE LINE
 		int a=deck.length/2,b=0;
 		int []c = new int[deck.length/2];
 		for(int i=0;i<deck.length/2;i++){
@@ -50,6 +45,7 @@ public class Deck
 				deck[i]=c[b];
 				b++;
 			}
+		// YOUR CODE HERE
 	}
 
 	// ONLY WORKS ON DECK WITH EVEN NUMBER OF CARDS
@@ -70,19 +66,34 @@ public class Deck
 				deck[i]=deck[a];
 				a++;
 			}
-		// YOUR CODE HERE DELETE LINE
+		// YOUR CODE HERE
 	}
-
-	// RETURNS TRUE IF DECK IN ORIGINAL SORTED:  0 1 2 3 ...
-	public boolean inSortedOrder()
+	
+	public String toBitString( int n ) 
 	{
-		// YOUR CODE HERE DELETE LINE
-		for(int i=0;i<deck.length-1;i++)
-		{
-			if (deck[i]>deck[i+1])
-				return false;
+		String binary="";
+		int a=1,count=0;
+		while(a<=n/2){
+			a=a*2;
+		    count++;
 		}
-		return true;
-		// JUST HERE TO COMPILE
+		binary = binary+"1";
+		int left=n-a;
+		a=a/2;
+		for (;count>0;count--){
+			if(left>=a){
+				binary=binary+"1";
+			    left=left-a;
+				a=a/2;
+			}
+			else{
+				binary=binary+"0";
+				a=a/2;
+			}	
+		}
+			
+			
+		return binary; // REPLACE WITH YOUR CODE
 	}
+	
 }	// END DECK CLASS
