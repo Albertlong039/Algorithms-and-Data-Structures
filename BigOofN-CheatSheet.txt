@@ -1,0 +1,174 @@
+When analyzing the speed / runtime / efficiency of an algorithm ( i.e a loop or a method or an entire program ) 
+we cannot rely on stopwatch elapsed time to compare the same program running on two different machines.  
+The exact same program running on two different machines will produce different runtimes because the faster 
+machine will execute the same number of instructions more quickly. This is why you can write a Java program on 
+your laptop and run it and print out a line at the bottom of the main method that reports the exact number of 
+milliseconds you code took to do the job - and then upload that program to our course's handin server to be 
+autograded - and discover that the runtimes differ wildly.  
+
+Clearly we need a different, more machine independent way to measure efficiency/runtime/speed.  That objective 
+form of comparison that we are looking for is based on identifying how many computer instructions need to be 
+executed to complete the task. This measurement is then expressed as a function of the size of the input. Before 
+getting any more technical let's give a fast & loose illustration using two well known commonly used approaches to 
+searching an array for the presence of a specific value that we will call the "key". Once we have done the 
+illustration and you have a gut level understanding of what we are measuring we will circle back and define 
+more terms.
+
+We will define 1 term before explaining the code. This one term is the all critical term called the O(1) or 
+constant time operation. An O(1) or constant time operation is an operation that requires no iteration to 
+complete it.  O(1) constant ops do not involve traversing data structures or running loops.
+
+O(1) or constant time ops are not affected either way by the size of the array or the size of the input etc.
+
+Examples of O(1) ops are:
+- defining a primitive or a reference variable
+- assigning a value into a primitive
+- performing arithmetic operations on primitives
+- comparing primitives against each other
+- looking up a primitive value imbedded in an expression involving primitives 
+- indexing into an array i.e. the expression  array[i] is O(1)
+
+ALGORITHM #1: Sequential Search on an array on N elements.
+
+int[] arr = { 75,4,77,51,6,88,49,1,13,43,21,31,16,28,14 }; 
+the array has 15 elements in it so N==15.  N is the count  let the key be 47 
+
+int sequentialSearch( int[] a, int count, int key )
+{
+	for( int i=0 ; i<count ; ++i )
+		if (a[i] == key) return i; // we located it at index i
+
+	return -1; // i.e. the "not found" indicator					
+}
+
+ANALYSIS#1:
+
+first look for all the O(1) operations.
+
+ the signature line of the for loop: 
+	for( int i=0 ; i<count ; ++i )
+       	initialize, compare, increment all O(1) operations
+
+ the body of the for loop
+	if (a[i] == key) return i
+	a comparison and return statement  ALL O(1) operations
+
+ the return after the loop
+	an O(1) operation
+
+now look at the loop:  HOW MANY TIMES (worst case scenario) WILL THE LOOP RUN
+ it will have to compare the key to ALL N elements of the array in the worst case
+ in order to definitively return the not found value
+
+So: the loop will perform these three O(1) operations N times.
+    1) it will evaluate i<count 
+    2) it will evaluate a[i] == key
+    3) it will evaluate ++1
+
+    and it will do these three things, N times
+
+Runtime is:  N*3. the limit of N*3 as N -> oo is just N. All lesser terms burn off only the highest order N term remains. 
+Thus our algorithm run in O(N) time. It is a linear algorithm. This means if you double the number of elements in the 
+array you double the work. But no matter how big you make it you are always running in linear O(N) time. The number 
+of constant operations is DIRECTLY PROPORTIONAL TO N.
+
+ALGORITHM #2: Binary Search on a sorted array
+
+int[] arr = { 1,2,4,6,7,9,21,23,34,54,56,76,78,81,94 };
+ 
+the array has 15 elements in it so N==15.  N is the count  let the key be 47 
+
+int binarySearch( int[] a, int count, int key ) 
+{
+	int lo=0,hi=count-1;
+	while (lo <= hi )
+	{
+		int mid = lo + (hi-lo)/2;
+		if (a[mid]==key) return mid;	
+		if (key > a[mid] ) // sorry u guessed too lo
+			lo=mid+1;
+		else		   // sorry u guessed too hi
+			hi=mid-1;
+	}
+	return -(lo+1);	// the index of wehre it 'would/should' be, but isn't		
+}
+
+ANALYSIS #2:
+
+first look for all the O(1) operations.
+
+ every operation before, inside and after the loop is an O(1) operation
+ 
+ Notice that in every execution of the loop we are just doing about a half dozen
+ O(1) operations. Thus number of constant ops inside the loop is fixed to a small 
+ constant.
+
+ So the only issue is how many times does the loop spin WORST CASE ?
+    
+ Notice that in every crank of the loop we are cutting the search space in half. 
+ As a result the loop is NOT doing N iterations and we are NOT looking at all N 
+ elements in the array. Because we are discarding 1/2 of the array with every turn
+ of the loop, it is only going to turn log2N times at most in the worst case.
+
+  The big O runtime is thus:   couple of constant operations before the loop
+			    +  log2N*(about 6 constant ops inside the loop)
+                            +  1 constant op after loop
+
+  The highest order term on N is log2N and all other constants burn off as n -> oo
+
+  Thus the final runtime is O(log2N)
+
+
+  ALGORITHM #3  a composite of the #1 & #2
+
+  main(..)
+  {
+     int[] arr = new int[N];
+     int count=0;
+
+     open up a file of N numbers
+     for every number in that file
+     {
+	insertInOrder( arr, count, number );
+	++count;
+     }
+  }
+  
+
+  void insertInOrder( int[] a, int count, int newVal )
+  {
+	int index = binarySearch( a, count, newVal ); // the cost is log2N
+	if (index < 0) index = -(index+1); // flip it back
+
+	for ( int i=count-1 ; i >= index ; --i ) // this loop is O(N) a linear traversal
+		a[i+1]=a[i];
+	a[index] = newVal; // no need to return true here we insert them all 
+ }	
+
+ ANALYSIS #3
+
+	the cost of the code before the loop is log2	
+	the cost of the loop is N since the newVal might belong at the front
+        thus having to move all N value up one place
+	the cost of the code after the loop is O(1)
+
+	thus the O(N) cost is log2N + N
+	the max of the two terms or the highest order term is N
+	
+	thus the overall cost or runtime or complexity is O(N)
+	the log2N component would have burned off at infinity
+	only the highest order term on N remains to represent the complexity class/order
+
+Some explanation of the array indexing operation.
+
+	Why is arr[i] considered an O(1) operation ?
+	Because the compiler can compute the address of the i'th element in constant time.
+	like this:  address of the i'th elem = 
+		base address in arr + (i * number of bytes in an int)
+
+	looking up the address in the arr var is O(1)
+	looking up the value of i is O(1)
+	looking up the # of bytes in an int is O(1)
+	performing (i * number of bytes) is O(1)
+	Thus indexing into an array is a super fast O(1) 
+	operation consisting of 1 multiplication and 1 addition

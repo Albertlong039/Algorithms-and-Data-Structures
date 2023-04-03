@@ -1,0 +1,74 @@
+<html>
+<head>
+	<title>2022 SPRING CS-445 Project #5 Exercise 1: PACS</title>
+    <style type="text/css">
+<!--
+body
+{
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	color: #000066;
+	background-color: #FFFFFF;
+	font-family: "verdana"; serif;
+	font-color: "white";
+	pre {font-style:"Lucida Console,consolas.Raster Fonts";}
+}
+-->
+</style>
+</head>
+<body>
+<br>
+<h1 align="center">POLITCAL ACTION COMMITTEES</h1>
+<hr color="green">
+
+<pre><code><big><strong>C:\&gt; java Pacs    // your program takes NO cmd line args</pre></code></big></strong>
+
+You are given a starter file <a href="Pacs.java"><big><strong>Pacs.java</strong></big></a> and two input files:
+<ul>
+	<li><a href="allPacs.txt">allPacs.txt</a> which contains a list of ALL Politcal Action Committee acronyms.
+<pre><big>ACLU
+AFCTC
+BFPR
+ASPCA
+GREENPEACE
+MADD
+NRA
+PETA
+SAVE_THE_WHALES
+SDS
+YCL
+ACRONYM</big></pre>
+	<li><a href="member2Pacs.txt">member2Pacs.txt</a> which is a 'flat file' representing a map of member => set of PACs that member belongs t
+<pre><big>bgates BFPR AFCTC
+jsmith ASPCA YCL ACLU
+bjones ASPCA NRA
+gjetson BFPR AFCTC ACLU SDS
+afauxci  PETA ASPCA
+kjohnson SAVE_THE_WHALES MADD
+jrogers NRA MADD GREENPEACE
+jsandburg YCL AFCTC ACLU</big></pre>
+</ul>
+<p>You must read both files and print a sorted table that lists each PAC followed by that PAC's it's members.
+Note that the rows are sorted by PAC. The list of names after the PAC must also be sorted</p>
+<hr>
+<h2 align='center'>CORRECT OUTPUT *must match EXACTLY*</h2>
+<pre><big>ACLU gjetson jsandburg jsmith
+ACRONYM
+AFCTC bgates gjetson jsandburg
+ASPCA afauxci bjones jsmith
+BFPR bgates gjetson
+GREENPEACE jrogers
+MADD jrogers kjohnson
+NRA bjones jrogers
+PETA afauxci
+SAVE_THE_WHALES kjohnson
+SDS gjetson
+YCL jsandburg jsmith</big></pre>
+<body>
+</html>
+
+
+
+

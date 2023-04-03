@@ -1,0 +1,8 @@
+
+Here (on the linked page below) is a very concise piece of pseudo code of the algorithm
+I am giving the reference to the publicly linked page so as to avoid even the appearance of plagerism.
+
+This explanation of the problem was not written by me but it is a short and clear telling of the Towers problem.
+This pseudo code written by the original author of this page succinctly describes the steps needed to solve the problem.
+
+https://www.cs.cmu.edu/~cburch/survey/recurse/hanoiimpl.html

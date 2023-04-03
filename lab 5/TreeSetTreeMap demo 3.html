@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>CS 401: TreeSet / TreeMap </title>
+<style type="text/css">
+		<!--
+		body
+		{
+			margin-top: 20px;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			margin-left: 20px;
+			color: #000066;
+			background-color: #FFFFFF;
+			font-family: "Century Schoolbook"; serif;
+		}
+		-->
+</style>
+
+</head>
+<body bgcolor="dddccc" >
+<h1 align="center">TreeSet / TreeMap </h1>
+<hr>
+<ul>
+	<h4><a href="TreeSetDemo1.java">TreeSetDemo1.java</a> reads a file of the 50 states into a TreeSet. Afterwards a file names queries is read which contains some words that may or may not be states. Each word read from the queries file is a search key into the TreeSet. Query words found in the map are reported as being actual states. Queriy words not found in the set are reported as not being actual names of states.</h4>
+	<li> input files used by the TreeSetDemo1 program: <a href="AllStates.txt">AllStates.txt</a>  and  <a href="queries.txt">queries.txt</a>
+	<li> download the above three files to your desktop. Compile the java file and execute it. No command args needed.
+</ul>
+
+<ul>
+	<h4><a href="TreeMapDemo1.java">TreeMapDemo1.java</a> reads a file where each line is a state followed by its capitol. Each pair is stored into a TreeMap of String to String. The state is the key and the capitol is stored alongside the state into the TreeMap. Afterwards the queries.txt file is read again. This time as each token is read from the queries file, that token is searched for in the Keys column of the TreeSet. if it is found, the capitol of that state is retreived and printed from the map.</h4>
+	<li> input files used by the TreeMapDemo1 program: <a href="States2Capitols.txt">States2Capitols.txt</a>  and  the queries.txt file above
+	<li> download the above two files to your desktop. Compile the java file and execute it. No command args needed.
+	<li> Note the use of the .split() method that is built in the String class. Split allows you to break up a string into an array of substrings by choosing a character or characters to delimit tokens. The expression "\\s+" is a <i>regular expression</i> that means any chunk of 1 or more contiguous whitespace characters is treated as a single delimiter.
+</ul>
+
+</body>
+</html>

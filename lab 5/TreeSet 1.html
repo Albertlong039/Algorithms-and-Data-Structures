@@ -1,0 +1,86 @@
+
+<HTML>
+<HEAD>
+<title>SPRING 2018 CS 401 Java's TreeSet</title>
+
+<style type="text/css">
+		<!--
+		body
+		{
+			margin-top: 20px;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			margin-left: 20px;
+			color: #000066;
+			background-color: #FFFFFF;
+			font-family: "verdana"; serif;
+		}
+		-->
+</style>
+
+<body>
+<ul>
+	<h4>TREES:</h4>
+
+	<p>
+	The term tree in computer science refers to an abstract data type (ADT) that has similarities to a real world tree turned upside down with the root at the top.
+	</p>
+
+	<pre><big><big><strong>
+root ---> A
+       /  |  \
+      B   C   D
+     /       / \
+    E       F   G
+</pre></big></big></strong>
+
+	<p>
+	In general a tree can have any number of children. Our illustration above shows a tree with the value A in the root node, and the A node having three children. The B node has one child and the D node has 2.
+	</p>
+	<p>
+	Java has a two data structures (containers) that are based on the tree ADT which we will use in this course: TreeSet and TreeMap.  We will not learn how to write these data structures as we did with the ArrayList class ( i.e ArrBag). We will just learn how to define a variable of the type and use it to solve problems. In a later course such as CS-1501 you will write your own implemementation of a binary search tree or a B tree etc.
+	<h4>For now we just use Javas built in TreeSet class to solve problems like you used Java's built in ArrayList class in a beginner Java course</h4>
+
+	</p>
+
+	<h4>BINARY SEARCH TREES: </h4>
+	<p>
+	The TreeMap and TreeSet containers that Java offers us are a specific kind of tree called binary search trees.
+	The word <i>binary</i> means a maximum of two children - but it might have one or zero children.
+	The term <i>search tree</i> means every node in the tree has the following properties:
+	</p>
+	<ul>
+		<li>it is itself a binary search tree with a root, left and right child
+		<li>the left child of the node is "less than" the root.
+		<li>the right child is "greater than" the root
+	</ul>
+
+	<pre><big><big><strong>
+root ---> A
+        /   \
+       C      F
+      / \    / \
+     B   D   E  G
+</pre></big></big></strong>
+
+	<p>
+
+	<h4>JAVA's TREESET CLASS:</h4>
+
+	<p>Java has a TreeSet class that uses a BST (binary search tree) and as elements are added into the tree it is kept as balanced (triangular) as possible such that if there are N nodes (values) in the BST then the maximum depth (number of levels / longest path) is at most log2N. This results in a big O runtime of log2N for the fundamental operations of the BST:
+<pre><big><strong>    boolean add()      runs in log2N  returns T/F if the add succeeds/fails     (How could it fail?  You tried to add a duplicate element)
+    boolean remove()   runs in log2N  returns T/F if the remove succeeds/fails  (How could it fail?  You tried to remove a non-existent element)
+    boolean contains() runs in log2N  returns T/F if the search succeeds/fails  (How could it fail?  You searched for a non-existent element)
+</pre></big></strong>
+<h5>TreeSet always keeps the elements in sorted order according to the compareTo() method of the Comparable interface written by whoever wrote the definition of the data type being stored in the Tree. In your Lab6 you implemented Comparable in your Fraction class and write a compareTo() method.  The TreeSet will accept your comparable Fraction class and keep them sorted as your compareTo() would order them.</h5>
+<hr>
+<p><img src="img-1.jpg"></p>
+<hr>
+<p>Notice the strings come out in alphabetical order</p>
+
+<img src="img-2.jpg">
+
+
+</ul>
+</body>
+</html>

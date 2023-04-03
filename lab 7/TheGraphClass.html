@@ -1,0 +1,73 @@
+<html>
+<head>
+	<style type="text/css">
+	<!--
+	body
+	{
+		margin-top: 10px;
+		margin-right: 200px;
+		margin-bottom: 10px;
+		margin-left: 200px;
+		color: #000066;
+		background-color: #FFFFFF;
+		font-family: "verdana"; serif;
+	}
+	-->
+</style>
+</head>
+<body>
+
+<h1 align="center">Supplemental Graph Class Instructions</h1>
+<hr color="green">
+<p>
+The Graph class  <a href="Graph.java">Graph.java</a> as given to you, has a constructor that takes the input file
+name, and the following methods:&nbsp;
+<ul>
+	<li>loadGraphFile(..) // loads the matrix
+	<li>addEdge(..) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // adds weight at src, dest
+	<li>toString() &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</ul>
+<h3>Enhancements you are to&nbsp; make to above class definition</h3>
+<ul>
+	<li>Add try catch only to the removeEdge method
+	<li>In your catch block just print out the Exception you caught and then call System.exit(0);
+</ul>
+<h3>Methods you are to add to the  Graph class</h3>
+Add the following <b>private</b> new methods to the Graph class.
+<ol>
+	<li>private boolean hasEdge( int src, int dest )  // T/F edge here ?
+	<li>private int inDegree( int node )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      // in degree of single node
+	<li>private int outDegree( int node )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      // out degree of single node
+	<li>private int degree( int node )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      // degree of a single node (= in+out)
+</ol>
+
+Then to add the following <b>public</b> new methods to the Graph class.
+<ul>
+	<li>public int maxInDegree()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<li>public int maxOutDegree()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<li>public int maxDegree()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<li>public int minInDegree()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<li>public int minOutDegree()&nbsp;&nbsp;&nbsp;&nbsp;
+	<li>public int minDegree()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</ul>
+
+<b><u>A word about efficiency and OOP:</u></b>&nbsp;&nbsp;&nbsp; I will be deducting points
+(small penalty) if you are grossly inefficient in how you write your methods.
+I will also deduct (a bit more of a penalty for this ) if you write code to
+do something that could have been done using the member functions already given
+to you.&nbsp; Think about every calculation you do and ask: &quot;Is there
+something already written for me that will do this?&quot; Being able to recognize and
+use <b>existing</b> code to do a task is a fundamental skill. I will continue to place a premium on in.
+<p><b><font color="#CC0000">Don't store results of previous computations in
+arrays or data structures - just call the private single node degree methods in a loop to compute your
+public mins and maxes etc.</font></b></p>
+<hr>
+
+<h4><font color="red">Write yor private hasEdge() inDegree() outDegree() and degree() methods first and test them first, before writing the
+public methods minDegrees and maxDegrees etc.</font></h4>
+
+</body>
+</html>

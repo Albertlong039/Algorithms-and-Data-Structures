@@ -1,0 +1,39 @@
+
+
+HERE IS A SKETCH OF HOW TO DO WRITE JUST ENOUGH TO VERIFY YOU ARE CORRECTLY GENERATING
+ALL POSSIBLE WORDS FROM THE BOGGLE GRID.
+
+Above main declare a static long int numWordsFormed=0;
+and you can declare your board there too
+String[][] board;
+
+In main do similar to swamp except instead of a single call to dfs
+	board = loadBoard(..) or something like this
+	// starting with EVERY letter of board, form all strings from it
+	for every cell [r,c] in the boggle board
+		call DFS(r,c, ""); 
+	println numWordsFormed;
+
+Below main write your DFS that only forms and counts wordsformed. 
+Don't search dictionary or do hueristics until you have verified 
+correctness of the words/count generated.
+
+DFS( , int r, int c, String word )
+{
+	tack the letter at [r][c] onto the end of your incoming word
+	println( word ); // you wont want to do this for grids >= 4
+	++numWordsFormed;
+
+	if NORTH's indices [r-1][c] are not out of bounds AND letter at [r-1][c] is unmarked
+		mark the letter at r,c
+		recurse passing in coords of N (relative to current r,c and the word )
+		unmark letter at r,c
+	if NE ...
+	if E  ...
+	if SE ...
+	if S  ...
+	if SW ...
+	if W  ...
+	if NW ...
+}
+	
